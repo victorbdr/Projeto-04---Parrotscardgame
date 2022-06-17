@@ -1,0 +1,60 @@
+body{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+header{
+    display:flex;
+    justify-content: center;
+    margin-top:40px;
+    margin-left: 285px;
+    width: 540px;
+height: 63px;
+}
+.h1{
+    font-weight: 700px;
+font-size: 56px;
+line-height: 66px;
+letter-spacing: -0.004em;
+color:#75B79E;
+}
+article{
+  
+    margin: auto;
+    display: flex;
+    flex-wrap:wrap;
+    perspective: 1000px;
+}
+
+img{
+    width: 100px;
+    height: 100px;
+
+}
+.memoryCard{
+width: 117px;
+height: 146px;
+background: #A7E9AF;
+border: 1px solid #99CEA8;
+border-radius: 5px;
+position: relative;
+transform: scale(1);
+transform-style: preserve-3d;
+transition: transform .5s;
+}
+.memoryCard:active{
+    transform: scale(.97);
+    transition: transform .2s;
+
+}
+.memoryCard.flip{
+    transform: rotateY(180deg);
+}
+.frontCard, .backCard{
+    position:absolute;
+    padding: 24px 10px;
+    backface-visibility: hidden;
+}
+.frontCard{
+    transform: rotateY(180deg);
+}
