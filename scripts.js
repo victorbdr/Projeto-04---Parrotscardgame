@@ -37,12 +37,10 @@ function playCards() {
   let cardsFace = [];
   for (let i = 0; i < howMany / 2; i++) {
     cardsFace.push(gifs[i]);
-    cardsFace.sort(comparador);
-    cardsFace.push(gifs[i]);
-    cardsFace.sort(comparador);
   }
+  cardsFace.sort(comparador);
 
-  for (let j = 0; j < cardsFace.length; j++) {
+  for (let i = 0; i < cardsFace.length; i++) {
     const card = document.createElement("div");
     const frontCard = document.createElement("img");
     const backCard = document.createElement("img");
@@ -56,13 +54,15 @@ function playCards() {
     frontCard.src = "./gifs/front.png";
 
     backCard.classList.add("backCard");
-    backCard.src = `./gifs/${gifs[j]}`;
+    backCard.src = `./gifs/${gifs[i]}`;
 
     card.appendChild(frontCard);
     card.appendChild(backCard);
     container.append(card);
+    card.classList.toggle("flip");
   }
 }
+playCards();
 
 function showCards() {
   while (howMany === null || !cartasCorretas(howMany)) {
@@ -71,22 +71,16 @@ function showCards() {
   playCards();
 }
 showCards();
-//embaralha
-function comparador() {
-  return Math.random() - 0.5;
+
+// cards checking
+let cardFlip = 0;
+let cardOne, cardTwo;
+
+function turnAround(card) {
+  card.classList.toggle("flip");
+  cardFlip += 1;
 }
-const usingCards = document.querySelectorAll("memoryCard");
-let cardFlip = false;
-let cardOne;
-let cardTwo;
-function turnAround() {
-  this.classList.Add(".flip");
-  if (!cardFlip) {
-    cardFlip = true;
-    cardOne = this;
-    console.log("cardFlip");
-  }
+function beginAgain() {
+  cardOne = null;
+  cardTwo = null;
 }
-usingCards.forEach((usingCards) =>
-  usingCards.addEventListener("click", turnAround)
-);
